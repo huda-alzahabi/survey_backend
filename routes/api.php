@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\JWTController;
 
 Route::group(['middleware' => 'api'], function($router) {
