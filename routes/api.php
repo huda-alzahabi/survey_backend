@@ -8,7 +8,9 @@ use App\Http\Controllers\JWTController;
 
 Route::group(['prefix' => 'v1'], function(){
 
-
+ Route::group(['prefix' => 'user'], function(){
+            Route::post('/submit_answer', [UserController::class, 'submitAnswer']);
+      });
 
     Route::group(['prefix' => 'admin'], function(){
         Route::group(['middleware' => 'role.admin'], function(){
