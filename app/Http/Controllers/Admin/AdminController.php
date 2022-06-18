@@ -17,12 +17,12 @@ class AdminController extends Controller
 
         $question_count=$request->question_count;
 
-        for ($x = 0; $x <=$question_count ; $x++) {
+        for ($x = 0; $x <$question_count ; $x++) {
 
             $questions=$request->questions;
             $question_arr=explode(',',$questions);
             $question=new Question;
-            $question->text=$request->$question_arr[$x];
+            $question->text=$question_arr[$x];
             $question->survey_id=$survey->id;
             $question->question_type = $request->question_type;
             $question->save();
@@ -31,7 +31,7 @@ class AdminController extends Controller
 
         $option_count=$request->option_count;
 
-        for ($x = 0; $x <=$option_count ; $x++) {
+        for ($x = 0; $x <$option_count ; $x++) {
 
             $options=$request->options;
             $option_arr=explode(',',$options);
