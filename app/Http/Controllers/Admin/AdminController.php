@@ -19,15 +19,17 @@ class AdminController extends Controller
 
         for ($x = 0; $x <=$question_count ; $x++) {
 
-        $question=new Question;
-        $question->text=$request->question;
-        $question->survey_id=$survey->id;
-        $question->question_type = $request->question_type;
-        $question->save();
+            $questions=$request->questions;
+            $question_arr=explode(',',$questions);
+            $question=new Question;
+            $question->text=$request->$question_arr[$x];
+            $question->survey_id=$survey->id;
+            $question->question_type = $request->question_type;
+            $question->save();
 
         }
 
-         $option_count=$request->option_count;
+        $option_count=$request->option_count;
 
         for ($x = 0; $x <=$option_count ; $x++) {
 
