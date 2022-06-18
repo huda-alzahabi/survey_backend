@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     use HasFactory;
+    protected $table='options';
+
+    public function questions(){
+        return $this->belongsTo(Question::class);
+    }
 }
