@@ -11,6 +11,25 @@ use App\Models\Answer;
 
 class UserController extends Controller
 {
+    public function getSurveyById(Request $request){
+
+        $questions= Question::where("survey_id",$request->survey_id)->get();
+
+        $optionsarr=array();
+
+        foreach ($questions as $question){
+            $options=Option::where("question_id",$question->id)->get();
+            array_push($optionsarr,$options);
+        }
+
+        return response()->json([
+            "status" => "Success",
+            "questions" => $questions,
+           "options" => $optionsarr
+        ], 200);
+
+    }
+
     public function submitAnswer(Request $request){
         $answer = new Answer;
         $answer->text = $request->answer;
