@@ -44,4 +44,10 @@ class UserController extends Controller
         ], 200);
 
     }
+     public function getAllSurveys(){
+       $surveys = Survey::all();
+        return response()->json([
+            "surveys" => $surveys
+        ], 200);
+    }
 }
