@@ -15,30 +15,28 @@ class AdminController extends Controller
         $survey->title = $request->title;
         $survey->save();
 
-        $question_count=$request->question_count;
+        $questions=$request->items;
+        $question_count=count($questions);
 
         for ($x = 0; $x <$question_count ; $x++) {
 
-            $questions=$request->questions;
-            $question_arr=explode(',',$questions);
             $question=new Question;
-            $question->text=$question_arr[$x];
+            $question->text=$questions[$x]["question"];
             $question->survey_id=$survey->id;
-            $question->question_type = $request->question_type;
+            $question->question_type = $questions[$x]["type"];
+
             $question->save();
 
-        }
+            $options=$questions[$x]["options"];
+            $option_count=count($options);
 
-        $option_count=$request->option_count;
+            for ($i = 0; $i <$option_count ; $i++) {
+                $myoption=new Option;
+                $myoption->value=$options[$i];
+                $myoption->question_id=$question->id;
+                $myoption->save();
 
-        for ($x = 0; $x <$option_count ; $x++) {
-
-            $options=$request->options;
-            $option_arr=explode(',',$options);
-            $myoption=new Option;
-            $myoption->value=$option_arr[$x];
-            $myoption->question_id=$question->id;
-            $myoption->save();
+            }
         }
 
         return response()->json([
