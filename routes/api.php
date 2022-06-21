@@ -9,8 +9,7 @@ use App\Http\Controllers\JWTController;
 Route::group(['prefix' => 'v1'], function(){
 
  Route::group(['prefix' => 'user'], function(){
-              Route::get('/get_surveys', [UserController::class, 'getAllSurveys']);
-
+            Route::get('/get_surveys', [UserController::class, 'getAllSurveys']);
             Route::get('/get_survey', [UserController::class, 'getSurveyById']);
             Route::post('/submit_answer', [UserController::class, 'submitAnswer']);
       });
